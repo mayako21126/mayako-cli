@@ -3,4 +3,4 @@ node_modules/
 dist/
 .idea/
 /.idea
-npm-debug.log
+npm-debug.log 
