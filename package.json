@@ -4,7 +4,7 @@
   "description": "A simple CLI for creating your projects",
   "main": "index.js",
   "bin": {
-    "mayako": "bin/mayako"
+    "mayako-cli": "bin/mayako"
   },
   "author": "mayako",
   "license": "MIT",
