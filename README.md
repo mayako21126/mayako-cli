@@ -1,15 +1,19 @@
 # mayako-cli
+
 > mayako
 
-## Setup
-
-# install 
+## Installation 
 npm install mayako-cli
 
 # Usage
-Vue.use(vueLoading)
+cd workspace
+mayako-cli init
+plz wait!
 
-# show&&hide
-- show vueLoading.show(function(){})
-- hide vueLoading.hide(function(){})
+# can do it
+- weixin-js
+- a Vue spa
+- more FontAwesome
+- postcss
+.........
 ```
