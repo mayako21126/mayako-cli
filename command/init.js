@@ -14,7 +14,7 @@ module.exports = () => {
         let npmType = yield prompt('input 1 or 2 to change type,1 is npm,2 is cnpm: ');
         //npm install -g yo generator-mayako
 
-        let cmdStr = (Number(npmType) == 1) ? `npm install -g yo generator-mayako` : `cnpm install -g yo generator-mayako`;
+        let cmdStr = (Number(npmType) == 1) ? `npm install -g yo generator-mayako` : `cnpm install -g yo generator-mayako --by=npm`;
 
         let cmdCd = ` mkdir ${projectName}`
 
