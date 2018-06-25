@@ -1,6 +1,6 @@
 {
     "name": "mayako-cli",
-    "version": "0.0.9.1",
+    "version": "0.1.9",
     "description": "A simple CLI for creating your projects",
     "main": "index.js",
     "bin": {
