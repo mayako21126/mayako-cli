@@ -3,6 +3,9 @@
  */
 'use strict'
 const exec = require('child_process').exec
+const spawn = require('child_process').spawn;
+const spawnSync = require('child_process').spawnSync;
+const execSync = require('child_process').execSync
 const fs = require('fs')
 const co = require('co')
 const prompt = require('co-prompt')
@@ -13,38 +16,38 @@ module.exports = () => {
         let projectName = yield prompt('Project name: ');
 
         let npmType = yield prompt('input 1 or 2 to change type,1 is npm,2 is cnpm: ');
-        //npm install -g yo generator-mayako
 
-        let cmdStr = (Number(npmType) == 1) ? `npm install -g yo generator-mayako -d ` : `cnpm install -g yo generator-mayako --by=npm -d `;
+        let installN = yield prompt('input 1 or 2 to need install,1 is yes,2 is no: ');
 
-        let cmdCd = ` mkdir ${projectName}`
+        let cmdStr = (Number(npmType) == 1) ? `sudo npm install -g yo generator-mayako -d ` : `sudo cnpm install -g yo generator-mayako --by=npm -d `;
 
-        let cmdCd2 = ` cd ${projectName}`
-
-        let cmdCd3 = ` yo mayako`
-
+        let childProcess = ''
         console.log(chalk.white('\n Start generating...'))
-
-        var childProcess = exec(cmdStr, {env: process.env, maxBuffer: 20*1024*1024}, (error, stdout, stderr) => {
-            if (error) {
-                console.log(error)
-                process.exit()
-            }
-
-            exec(cmdCd, function (error, stdout, stderr) {
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                } else {
-                    console.log(chalk.green('\n √ Generation completed!'))
-                    console.log(`\n cd ${projectName} && yo mayako \n`)
+        if (installN == 1) {
+            childProcess = exec(cmdStr, { env: process.env, maxBuffer: 20 * 1024 * 1024 }, (error, stdout, stderr) => {
+                if (error) {
+                    console.log(error)
                     process.exit()
                 }
-
+                spawnSync('mkdir', [projectName]);
+                spawnSync('cd', [projectName]);
+                spawnSync('yo', ['mayako'], {
+                    cwd: projectName,
+                    stdio: 'inherit',
+                    shell: process.platform === 'win32'
+                });
+                process.exit()
+            })
+        } else {
+            spawnSync('mkdir', [projectName]);
+            spawnSync('cd', [projectName]);
+            spawnSync('yo', ['mayako'], {
+                cwd: projectName,
+                stdio: 'inherit',
+                shell: process.platform === 'win32'
             });
-
-
-        })
-
+            process.exit()
+        }
         var stdoutStream = fs.createWriteStream('out.txt');
         childProcess.stdout.pipe(stdoutStream, {
             end: false
@@ -71,7 +74,6 @@ module.exports = () => {
             stderrEnded = true;
             tryClosing();
         });
-
 
     })
 }
