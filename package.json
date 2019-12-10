@@ -1,18 +1,18 @@
 {
-    "name": "mayako-cli",
-    "version": "0.2.0",
-    "description": "A simple CLI for creating your projects",
-    "main": "index.js",
-    "bin": {
-        "mayako-cli": "bin/mayako"
-    },
-    "author": "mayako",
-    "license": "MIT",
-    "homepage": "https://github.com/mayako21126",
-    "dependencies": {
-        "chalk": "^1.1.3",
-        "co": "^4.6.0",
-        "co-prompt": "^1.0.0",
-        "commander": "^2.9.0"
-    }
+  "name": "mayako-cli",
+  "version": "0.2.1",
+  "description": "A simple CLI for creating your projects",
+  "main": "index.js",
+  "bin": {
+    "mayako-cli": "bin/mayako"
+  },
+  "author": "mayako",
+  "license": "MIT",
+  "homepage": "https://github.com/mayako21126",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0"
+  }
 }
