@@ -1,10 +1,10 @@
 {
-  "name": "mayako-cli",
+  "name": "iog-cli",
   "version": "0.2.3",
   "description": "A simple CLI for creating your projects",
   "main": "index.js",
   "bin": {
-    "mayako-cli": "bin/mayako"
+    "iog-cli": "bin/mayako"
   },
   "author": "mayako",
   "license": "MIT",
