@@ -4,7 +4,7 @@
  * @Autor: mayako
  * @Date: 2019-08-07 13:47:04
  * @LastEditors: mayako
- * @LastEditTime: 2019-12-10 15:08:47
+ * @LastEditTime: 2020-03-11 13:38:13
  */
 /**
  * Created by Administrator on 2016/12/8.
@@ -12,7 +12,7 @@
 'use strict'
 const exec = require('child_process').exec
 const spawn = require('child_process').spawn;
-const spawnSync = require('child_process').spawnSync;
+const spawnSync = require('cross-spawn').sync;
 const execSync = require('child_process').execSync
 const fs = require('fs')
 const co = require('co')
@@ -21,16 +21,27 @@ const chalk = require('chalk')
 
 module.exports = () => {
   co(function* () {
+    let password = ''
+
     let projectName = yield prompt('Project name: ');
+
+    let sudo = yield prompt('input 1 or 2 to need sudo,1 is yes,2 is no: ');
+
+    if(Number(sudo)==1){
+      password = yield prompt('password: ');
+    }
 
     let npmType = yield prompt('input 1 or 2 to change type,1 is npm,2 is cnpm: ');
 
     let installN = yield prompt('input 1 or 2 to need install,1 is yes,2 is no: ');
 
-    let cmdStr = (Number(npmType) == 1) ? `npm install -g yo generator-mayako -d ` : `cnpm install -g yo generator-mayako --by=npm -d `;
+    let sudoStr = (Number(sudo) == 1) ? `echo "${password}" | sudo -S `: ''
+
+    let cmdStr = (Number(npmType) == 1) ? `${sudoStr}npm install -g yo generator-mayako -d ` : `${sudoStr}cnpm install -g yo generator-mayako --by=npm -d `;
 
     let childProcess = ''
-    console.log(chalk.white('\n Start generating...'))
+    console.log(chalk.white('\n Start generating1...'))
+
     if (installN == 1) {
       childProcess = exec(cmdStr, {
         env: process.env,
