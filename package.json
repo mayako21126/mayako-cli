@@ -1,6 +1,6 @@
 {
-  "name": "iog-cli",
-  "version": "0.2.4",
+  "name": "peg-cli",
+  "version": "1.0.1",
   "description": "A simple CLI for creating your projects",
   "main": "index.js",
   "bin": {

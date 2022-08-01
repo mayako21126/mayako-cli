@@ -4,7 +4,7 @@
  * @Autor: mayako
  * @Date: 2019-08-07 13:47:04
  * @LastEditors: mayako
- * @LastEditTime: 2020-03-11 13:38:13
+ * @LastEditTime: 2022-08-01 17:53:30
  */
 /**
  * Created by Administrator on 2016/12/8.
@@ -23,8 +23,6 @@ module.exports = () => {
   co(function* () {
     let password = ''
 
-    let projectName = yield prompt('Project name: ');
-
     let sudo = yield prompt('input 1 or 2 to need sudo,1 is yes,2 is no: ');
 
     if(Number(sudo)==1){
@@ -37,10 +35,10 @@ module.exports = () => {
 
     let sudoStr = (Number(sudo) == 1) ? `echo "${password}" | sudo -S `: ''
 
-    let cmdStr = (Number(npmType) == 1) ? `${sudoStr}npm install -g yo generator-mayako -d ` : `${sudoStr}cnpm install -g yo generator-mayako --by=npm -d `;
+    let cmdStr = (Number(npmType) == 1) ? `${sudoStr}npm install -g yo generator-mayako2 -d ` : `${sudoStr}cnpm install -g yo generator-mayako2 --by=npm -d `;
 
     let childProcess = ''
-    console.log(chalk.white('\n Start generating1...'))
+    console.log(chalk.white('\n Start generating...'))
 
     if (installN == 1) {
       childProcess = exec(cmdStr, {
@@ -51,20 +49,14 @@ module.exports = () => {
           console.log(error)
           process.exit()
         }
-        spawnSync('mkdir', [projectName]);
-        spawnSync('cd', [projectName]);
-        spawnSync('yo', ['mayako'], {
-          cwd: projectName,
+        spawnSync('yo', ['mayako2'], {
           stdio: 'inherit',
           shell: process.platform === 'win32'
         });
         process.exit()
       })
     } else {
-      spawnSync('mkdir', [projectName]);
-      spawnSync('cd', [projectName]);
-      spawnSync('yo', ['mayako'], {
-        cwd: projectName,
+      spawnSync('yo', ['mayako2'], {
         stdio: 'inherit',
         shell: process.platform === 'win32'
       });
